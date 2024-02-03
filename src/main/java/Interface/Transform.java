@@ -16,14 +16,10 @@ public class Transform implements Rotate, Translate{
      * @return rotated collection
      * */
     public Collection<Point2d> rotate(Collection<Point2d> coords, Double angle) {
-        Collection<Point2d> rotatedCoords = new ArrayList<>();
-
         for (Point2d point : coords) {
-            double newX = point.X() * Math.cos(angle) - point.Y() * Math.sin(angle);
-            double newY = point.X() * Math.sin(angle) + point.Y() * Math.cos(angle);
-            rotatedCoords.add(new Point2d(newX, newY));
+            point.rotate(angle);
         }
-        return rotatedCoords;
+        return coords;
     }
 
     /**
@@ -33,13 +29,9 @@ public class Transform implements Rotate, Translate{
      * @return translated coords
      * */
     public Collection<Point2d> translate(Collection<Point2d> coords, Point2d translateVector) {
-        Collection<Point2d> translatedCoords = new ArrayList<>();
-
         for (Point2d point : coords) {
-            double newX = point.X() + translateVector.X();
-            double newY = point.Y() + translateVector.Y();
-            translatedCoords.add(new Point2d(newX, newY));
+            point.translate(translateVector);
         }
-        return translatedCoords;
+        return coords;
     }
 }
