@@ -4,6 +4,7 @@ import Point.Point2d;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 
 public class Transform implements Rotate, Translate{
@@ -39,7 +40,6 @@ public class Transform implements Rotate, Translate{
             double newY = point.Y() + translateVector.Y();
             translatedCoords.add(new Point2d(newX, newY));
         }
-
         return translatedCoords;
     }
 }
