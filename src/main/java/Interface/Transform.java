@@ -2,10 +2,12 @@ package Interface;
 
 import Point.Point2d;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+
 public class Transform implements Rotate, Translate{
-    /** TODO
+    /**
      * Rotate all points of collections given in parameters
      * with the angle given
      * @param coords collections of Point2d
@@ -13,16 +15,31 @@ public class Transform implements Rotate, Translate{
      * @return rotated collection
      * */
     public Collection<Point2d> rotate(Collection<Point2d> coords, Double angle) {
-        return null;
+        Collection<Point2d> rotatedCoords = new ArrayList<>();
+
+        for (Point2d point : coords) {
+            double newX = point.X() * Math.cos(angle) - point.Y() * Math.sin(angle);
+            double newY = point.X() * Math.sin(angle) + point.Y() * Math.cos(angle);
+            rotatedCoords.add(new Point2d(newX, newY));
+        }
+        return rotatedCoords;
     }
 
-    /** TODO
+    /**
      * Translate all points of a collection by a given vector
      * @param coords Collection of Point2d
      * @param translateVector Vector of translation
      * @return translated coords
      * */
     public Collection<Point2d> translate(Collection<Point2d> coords, Point2d translateVector) {
-        return null;
+        Collection<Point2d> translatedCoords = new ArrayList<>();
+
+        for (Point2d point : coords) {
+            double newX = point.X() + translateVector.X();
+            double newY = point.Y() + translateVector.Y();
+            translatedCoords.add(new Point2d(newX, newY));
+        }
+
+        return translatedCoords;
     }
 }
