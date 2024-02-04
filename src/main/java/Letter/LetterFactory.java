@@ -109,7 +109,7 @@ public final class LetterFactory {
      */
     public static BaseShape create_N() {
         Rectangle verticalBar = new Rectangle(halfStripeThickness, maxHeight);
-        Rectangle diagonalBar = new Rectangle(halfStripeThickness, maxHeight);
+        Rectangle diagonalBar = new Rectangle(halfStripeThickness, maxHeight+halfStripeThickness);
         Rectangle verticalBar2 = new Rectangle(halfStripeThickness, maxHeight);
         diagonalBar.rotate(diagonalBar.getCoords(), Math.toRadians(-20));
         diagonalBar.translate(diagonalBar.getCoords(), new Point2d(halfMaxWidth,0.));
@@ -127,8 +127,8 @@ public final class LetterFactory {
      * @return BaseShape containing the letter O
      */
     public static BaseShape create_O() {
-        Ellipse letter = new Ellipse(maxWidth, maxHeight/2);
-        Ellipse innerBody = new Ellipse(maxWidth - stripeThickness, maxHeight/2 - stripeThickness);
+        Ellipse letter = new Ellipse(halfMaxWidth, maxHeight/2);
+        Ellipse innerBody = new Ellipse(halfMaxWidth - halfStripeThickness, maxHeight/2 - halfStripeThickness);
         letter.remove(innerBody);
         return letter;
     }
