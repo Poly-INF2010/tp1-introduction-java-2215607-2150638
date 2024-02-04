@@ -30,15 +30,24 @@ public final class LetterFactory {
      * @return BaseShape containing the letter B
      */
     public static BaseShape create_B() {
-        //BaseShape letter = new Circle(maxHeight/4);
-        //letter.translate(letter.getCoords(), new Point2d(0.0, -0.25*maxHeight));
-        //letter.add(new Circle(maxHeight/4).translate(new Point2d(0.0, 0.25*maxHeight)));
-        //letter.remove(new Circle(maxHeight/4 - halfStripeThickness).translate(new Point2d(0.0, -0.25*maxHeight)));
-        //letter.remove(new Circle(maxHeight/4 - halfStripeThickness).translate(new Point2d(0.0, 0.25*maxHeight)));
-        //letter.remove(new Rectangle(maxWidth, maxHeight).translate(new Point2d(-maxWidth/2, 0.0)));
-        //letter.add(new Rectangle(halfStripeThickness, maxHeight));
-        return null;
-    }
+        BaseShape letter = new Circle(maxHeight/4);
+        letter.translate(letter.getCoords(), new Point2d(0.0, maxHeight/4));
+        Circle bottomCircle = new Circle(maxHeight/4);
+        bottomCircle.translate(bottomCircle.getCoords(), new Point2d(0.0, -maxHeight/4));
+        Rectangle verticalLine = new Rectangle(stripeThickness*1.2, maxHeight);
+        verticalLine.translate(verticalLine.getCoords(), new Point2d(-maxHeight/4.5, 0.0));
+
+        Circle topRemove = new Circle(maxHeight/6);
+        topRemove.translate(topRemove.getCoords(), new Point2d(0.0, maxHeight/4));
+        Circle bottomRemove = new Circle(maxHeight/6);
+        bottomRemove.translate(bottomRemove.getCoords(), new Point2d(0.0, -maxHeight/4));
+
+        letter.add(bottomCircle);
+        letter.remove(topRemove);
+        letter.remove(bottomRemove);
+        letter.add(verticalLine);
+        return letter;
+        }
 
     /** TODO
      * Create the letter C graphically
@@ -59,14 +68,17 @@ public final class LetterFactory {
      * @return BaseShape containing the letter E
      */
     public static BaseShape create_E() {
-        Ellipse letter = new Ellipse(maxWidth/2, maxHeight/2);
-        Ellipse middleToRemove = new Ellipse((maxWidth - stripeThickness)/2, (maxHeight - stripeThickness)/2);
-        Rectangle middleStripe = new Rectangle(maxWidth, stripeThickness);
-        Rectangle smallRemoval = new Square(stripeThickness);
-        smallRemoval.translate(smallRemoval.getCoords(), new Point2d(halfMaxWidth-halfStripeThickness, stripeThickness));
-        letter.remove(middleToRemove);
-        letter.remove(smallRemoval);
-        letter.add(middleStripe);
+        Rectangle letter = new Rectangle(halfStripeThickness, maxHeight);
+        letter.translate(letter.getCoords(), new Point2d(-halfMaxWidth + halfStripeThickness/2, 0.0));
+        Rectangle topBar = new Rectangle(maxWidth, halfStripeThickness);
+        topBar.translate(topBar.getCoords(), new Point2d(0.0, halfMaxHeight - halfStripeThickness/2));
+        Rectangle middleBar = new Rectangle(maxWidth, halfStripeThickness);
+        Rectangle bottomBar = new Rectangle(maxWidth, halfStripeThickness);
+        bottomBar.translate(bottomBar.getCoords(), new Point2d(0.0, -halfMaxHeight + halfStripeThickness/2));
+
+        letter.add(topBar);
+        letter.add(middleBar);
+        letter.add(bottomBar);
         return letter;
     }
 
